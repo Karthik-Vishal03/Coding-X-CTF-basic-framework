@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Problems - Code Challenge</title>
+</head>
+<body>
+    <h1>Problems</h1>
+    <ul>
+        {% for problem in problems %}
+            <li>{{ problem[1] }} - <a href="/submit/{{ problem[0] }}">Submit Solution</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

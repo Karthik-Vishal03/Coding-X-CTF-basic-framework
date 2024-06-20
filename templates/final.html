@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Round - Code Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container final-container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Final Round</h1>
+            </div>
+            <div class="card-body">
+                <p>Enter the decoded base64 message:</p>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="final_answer" placeholder="Enter the decoded message...">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+                <a class="btn btn-secondary mt-3" href="{{ url_for('index') }}">Back to Challenges</a>
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-message">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

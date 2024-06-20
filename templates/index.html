@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center bg-purple">
+            <h1>Welcome to the ultimate coding X CTF challenge</h1>
+            <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-message">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <div class="challenge-list">
+            <h2 style="color: purple;">Challenges</h2>
+            <ul class="list-group">
+                {% for challenge in challenges %}
+                    <li class="list-group-item challenge-item">
+                        {{ challenge.question }} - 
+                        {% if challenge.id in completed_challenges %}
+                            <span class="badge badge-success">Completed</span>
+                        {% else %}
+                            <a class="btn btn-primary" href="{{ url_for('challenge', challenge_id=challenge.id) }}">Solve</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="progress-list">
+            <h2>Collected Characters</h2>
+            <p>{{ collected_characters }}</p>
+            <a class="btn btn-success" href="{{ url_for('final') }}">Final Round</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
